@@ -51,6 +51,7 @@ class BootScene extends Phaser.Scene {
         this.load.audio('powerup', 'assets/sounds/powerup.wav');
         this.load.audio('gameover', 'assets/sounds/gameover.wav');
         this.load.audio('music', 'assets/sounds/music.mp3');
+        this.load.audio('warp', 'assets/sounds/powerup.wav');
     }
 
     create() {

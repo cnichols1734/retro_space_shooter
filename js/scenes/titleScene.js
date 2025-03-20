@@ -54,7 +54,9 @@ class TitleScene extends Phaser.Scene {
         // Start game on click
         startButton.on('pointerdown', () => {
             this.sound.play('powerup', { volume: window.GAME.FX_VOLUME });
-            this.scene.start('GameScene');
+            
+            // Use transition scene instead of directly going to game scene
+            this.startTransition();
         });
         
         // Instructions text
@@ -88,6 +90,17 @@ class TitleScene extends Phaser.Scene {
             quantity: 1,
             blendMode: 'ADD',
             frequency: 200
+        });
+    }
+    
+    // New method for transition effect
+    startTransition() {
+        // Create a fade out effect for all elements
+        this.cameras.main.fadeOut(1000);
+        
+        // When fade is complete, start transition scene
+        this.cameras.main.once('camerafadeoutcomplete', () => {
+            this.scene.start('TransitionScene');
         });
     }
     

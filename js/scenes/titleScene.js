@@ -150,12 +150,12 @@ class TitleScene extends Phaser.Scene {
             // Create a RAPID COOLING title as a sprite
             const titleBackground = this.add.rectangle(x - 30, y - 8, 150, 18, 0x000022, 0.7);
             
-            // Create text with specific settings
+            // Create text with specific settings - using white color instead of the powerup color
             const rapidText = this.add.text(x - 90, y - 8, 'RAPID COOLING', {
                 fontFamily: '"Press Start 2P"',
                 fontSize: '9px',
                 align: 'left',
-                fill: '#' + color.toString(16)
+                fill: '#FFFFFF' // Changed to white
             });
             
             // Make sure it's visible by bringing to top

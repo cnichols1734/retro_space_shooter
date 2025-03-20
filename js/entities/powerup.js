@@ -108,6 +108,9 @@ class Powerup extends Phaser.Physics.Arcade.Sprite {
                 player.fireDelay = Math.max(player.fireDelay * 0.8, 150);
                 // Also reduce heat generation by 20%
                 player.heatRate = Math.max(player.heatRate * 0.8, 5);
+                // Set powerup active and timer (10 seconds)
+                player.fastFiringActive = true;
+                player.fastFiringTime = 10000;
                 break;
             case 2: // Rapid cooling
                 player.heatRate = Math.max(player.heatRate * 0.7, 5);

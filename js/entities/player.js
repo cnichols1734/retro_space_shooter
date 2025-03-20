@@ -19,6 +19,11 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.maxProjectiles = 3; // Limit number of projectiles on screen
         this.baseMaxProjectiles = 3; // Store initial value
         this.baseFireDelay = 350; // Store initial value
+        this.baseFiringHeatRate = 35; // Store initial heat rate
+        
+        // Powerup timers
+        this.fastFiringActive = false;
+        this.fastFiringTime = 0;
         
         // Weapon heat mechanics
         this.weaponHeat = 0;
@@ -181,6 +186,19 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             }
         }
         
+        // Update faster firing powerup
+        if (this.fastFiringActive) {
+            // Countdown faster firing time
+            this.fastFiringTime -= 16.67; // Approximate ms per frame
+            
+            if (this.fastFiringTime <= 0) {
+                this.fastFiringActive = false;
+                // Reset firing rate and heat generation to base values
+                this.fireDelay = this.baseFireDelay;
+                this.heatRate = this.baseFiringHeatRate;
+            }
+        }
+        
         // Update engine particles
         this.engineEmitter.setPosition(this.x, this.y + 20);
         
@@ -217,6 +235,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             // Add slight pulse effect
             const pulseAmount = Math.sin(this.gameScene.time.now * 0.01) * 0.4;
             this.firingIndicator.alpha = 0.6 + pulseAmount;
+            
+            // Add countdown indicator if active
+            if (this.fastFiringActive) {
+                // Show countdown as fading indicator
+                const timeRatio = this.fastFiringTime / 10000; // 10 seconds total
+                this.firingIndicator.scaleX = timeRatio * 30;
+            }
         } else {
             this.firingIndicator.setVisible(false);
         }

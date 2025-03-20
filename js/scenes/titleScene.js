@@ -103,7 +103,7 @@ class TitleScene extends Phaser.Scene {
         
         // Create powerup examples
         this.createPowerupInfo(leftColX, startY, 0x00ffff, 'EXTRA PROJECTILE', 'Increases max projectiles');
-        this.createPowerupInfo(leftColX, startY + spacing, 0xffff00, 'FASTER FIRING', 'Faster shots & less heat');
+        this.createPowerupInfo(leftColX, startY + spacing, 0xffff00, 'FASTER FIRING', 'Faster shots & less heat (10s)');
         this.createPowerupInfo(rightColX, startY, 0x00ff00, 'RAPID COOLING', 'Improves weapon cooling');
         this.createPowerupInfo(rightColX, startY + spacing, 0xff00ff, 'SHIELD', 'Temporary invincibility');
         
